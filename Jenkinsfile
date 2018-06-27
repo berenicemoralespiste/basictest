@@ -1,15 +1,17 @@
 #!groovy
 
 node {
+
    // ------------------------------------
    // -- ETAPA: Compilar
    // ------------------------------------
    stage 'Compilar'
-
-
-   // -- Compilando
-   echo 'Compilando aplicación'
-   sh 'mvn clean compile'
+       // -- Configura variables
+       echo 'Configurando variables'
+       def mvnHome = tool 'M3'
+       // -- Compilando
+       echo 'Compilando aplicación'
+       sh 'mvn clean compile'
 
 
 
@@ -17,8 +19,8 @@ node {
    // -- ETAPA: Instalar
    // ------------------------------------
    stage 'Instalar'
-   echo 'Instala el paquete generado en el repositorio maven'
-   sh 'mvn install -Dmaven.test.skip=true'
+       echo 'Instala el paquete generado en el repositorio maven'
+       sh 'mvn install -Dmaven.test.skip=true'
 
 
 }
